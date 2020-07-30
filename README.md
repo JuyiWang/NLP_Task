@@ -20,6 +20,6 @@
 
 ## 语言模型
 
-数据集: [李宏毅-深度学习2020 HW.8 机器翻译]()
+数据集: [李宏毅-深度学习2020 HW.8 机器翻译](https://www.manythings.org/anki/)
 
 模型: Seq2Seq-Attention
