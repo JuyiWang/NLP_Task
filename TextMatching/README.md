@@ -6,4 +6,4 @@
 
 ### [ESIM](https://arxiv.org/pdf/1609.06038v3.pdf)
 
-
+![ESIM](NLP_Task/img/ESIM.png)
