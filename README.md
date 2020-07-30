@@ -2,7 +2,7 @@
 
 ## 文本分类
 
-数据集: [李宏毅-深度学习2020 HW.4 文本分类]()
+数据集: [李宏毅-深度学习2020 HW.4 文本分类](https://www.kaggle.com/c/ml2020spring-hw4)
 
 模型: RNN、TextCNN、Bert
 
