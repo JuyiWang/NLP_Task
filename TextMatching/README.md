@@ -21,7 +21,7 @@
 4. 自然语言推理/文本蕴含 : [A]前提 (premise) -[B]假设 (hypothesis) ? Relation : (entailment / contradiction / neutral)
 5. 信息检索中的匹配问题 : 匹配可看做Selection, 更重要的是 Ranking
 
-## 模型
+## 应用模型
 
 ### ESIM
 
