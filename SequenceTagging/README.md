@@ -67,3 +67,48 @@ $$p(x,y;\theta) = p(y_{1})p(x_1|y_{1})\prod_{2}^{N}p(y_{i}|y_{i-1})p(x_{i}|y_{i}
   - 计算观测序列: 已知$\{x_1,x_2,...x_{n-1}\}$ 求 {x_n}
   - 已知观测求状态: 语音识别 $x_n$为语音信息,$y_n$为文字信息
   - 训练参数$\lambda$
+
+### 无向图
+
+#### 条件随机场 (CRF)
+
+直接建模条件概率的无向图模型
+
+CRF详细推导[戳这里~](https://www.cnblogs.com/createMoMo/p/7529885.html)
+
+在序列标注任务中, 可应用CRF根据统计规则及概率转移限制LSTM的结果。
+
+CRF将 **转移特征函数** (对应 Transition Score) 与 **状态特征矩阵** (对应Emssion Score, 其值来自于BILSTM) 作为参数进行训练。训练过程需应用动态规划-**Viterbi算法**
+
+
+## 应用模型
+
+### BILSTM-CNN-CRF
+
+#### 论文链接
+
+[End-to-end Sequence Labeling via Bi-directional LSTM-CNNs-CRF](https://arxiv.org/pdf/1603.01354.pdf)
+
+#### 模型结构
+
+![BILSTM-CNN-CRF](IMG/../../img/BILSTM-CNN-CRF.png)
+
+**Char Embedding**
+
+![Char-embedding](img/../../img/char-embedding.png)
+
+应用 CNN 计算 character-level representation. CNN 在捕捉形态信息 (Morphological information) 方向很有效.
+
+Embedding = Character embedding + Word embedding
+
+Word Embedding 可保持多重语义信息, Randomly Initialize embedding + Pretrained embedding, 即保持全局语义信息, 又针对具体任务进行调整。
+
+**BILSTM**
+
+学习双向语义信息。
+
+**CRF**
+
+LSTM $H_t$ 在标签无依赖条件下有效, 无法考虑标签间的相互关系。
+
+对于一个序列 CRF 模型(只考虑两个连续标签之间的交互), 采用 **Viterbi算法**可以有效地解决训练和解码问题。
