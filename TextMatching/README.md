@@ -1,6 +1,25 @@
 # 文本匹配
 
-## 数据集
+## 概述
+
+### 分类
+
+- 根据监督信号可分为 :
+  - 文本语义相似度 : 语义相似度模型
+  - 检索后的点击行为 : 行为相关性模型
+
+- 根据 Query 及 document 的数量可分为 
+  - Pointwise : one p - one d
+  - Pairwise : one p - two d
+  - Listwise : one p - multi d
+
+### 应用
+
+1. 文本相似度匹配
+2. 问答匹配 : Ranking Question, 多Answer的排序问题
+3. 对话匹配 : 需考虑多轮信息
+4. 自然语言推理/文本蕴含 : [A]前提 (premise) -[B]假设 (hypothesis) ? Relation : (entailment / contradiction / neutral)
+5. 信息检索中的匹配问题 : 匹配可看做Selection, 更重要的是 Ranking
 
 ## 模型
 
