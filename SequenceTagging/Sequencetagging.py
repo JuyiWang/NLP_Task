@@ -8,7 +8,6 @@ SequenceTagging.py
         - Character Embedding
     - Model :
         - BILSTM-CNN-CRF
-
 """
 
 import os
