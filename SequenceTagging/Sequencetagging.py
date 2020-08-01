@@ -8,7 +8,6 @@ SequenceTagging.py
         - Character Embedding
     - Model :
         - BILSTM-CNN-CRF
-
 """
 
 import os
@@ -494,18 +493,18 @@ if __name__ == '__main__':
     word_tokenizer = Tokenizer(config)
     word_vocab_size, word_embed_matrix = word_tokenizer.build_embed_matrix(path = './glove.6B.100d.txt')
 
-    train_dataset = NerDataset(word_tokenizer, char_tokenizer, train_data[:3000], train_tag[:3000])
+    train_dataset = NerDataset(word_tokenizer, char_tokenizer, train_data, train_tag)
     train_data_loader = torch.utils.data.DataLoader(train_dataset, batch_size = 1,shuffle = True)
     tag_to_idx = train_dataset.tag_dic
 
-    valid_dataset = NerDataset(word_tokenizer, char_tokenizer, valid_data[:200], valid_tag[:200])
+    valid_dataset = NerDataset(word_tokenizer, char_tokenizer, valid_data, valid_tag)
     valid_data_loader = torch.utils.data.DataLoader(valid_dataset, batch_size = 1,shuffle = True)
    
     model = build_model(config, char_embed_matrix, tag_to_idx, word_embed_matrix)
 
     optimz = torch.optim.SGD(model.parameters(), lr = 1e-3, weight_decay = 1e-4) 
     
-    for idx in range(50):
+    for idx in range(config.epoch_num):
         loss_list = []
         begin_time = time.time()
         for _,(X,Y) in enumerate(train_data_loader): 
