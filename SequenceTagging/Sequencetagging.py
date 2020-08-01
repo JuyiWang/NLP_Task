@@ -505,7 +505,7 @@ if __name__ == '__main__':
 
     optimz = torch.optim.SGD(model.parameters(), lr = 1e-3, weight_decay = 1e-4) 
     
-    for idx in range(50):
+    for idx in range(config.epoch_num):
         loss_list = []
         begin_time = time.time()
         for _,(X,Y) in enumerate(train_data_loader): 
