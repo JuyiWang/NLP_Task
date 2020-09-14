@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 """
 SequenceTagging.py
 
@@ -245,7 +246,7 @@ class BILSTM_CRF(nn.Module):
         )
         self._init_para()
         # transition from j to i : transition[i,j]
-        self.transition = nn.Parameter(torch.randn(self.target_size, self.target_size))
+        self.transition = nn.Parameter(torch.randn(self.target_size, self.target_size)) 
         self.transition.data[self.tag_to_idx['<START>'],:] = -10000
         self.transition.data[:, self.tag_to_idx['<STOP>']] = -10000
 
@@ -254,10 +255,11 @@ class BILSTM_CRF(nn.Module):
         nn.init.constant_(self.dense[1].bias.data, 0)
 
     def _forward_alg(self, feats):
-        init_alphas = torch.full((1,self.target_size), -10000.)  # init_alphas : [1, target_size] , <START> = 0 others -10000
+        # init_alphas : [1, target_size] , <START> = 0 others -10000
+        init_alphas = torch.full((1,self.target_size), -10000.)  
         init_alphas[0][self.tag_to_idx['<START>']] = 0
-
-        forward_var = init_alphas   # forward_var : [1, target_size]
+        # forward_var : [1, target_size]
+        forward_var = init_alphas   
         # feat : all the label of word_i
         for feat in feats:  # feats : [seq_len, target_size] | feats : [1, target_size]  
             alphs_t = []
