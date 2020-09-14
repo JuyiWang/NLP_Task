@@ -240,7 +240,6 @@ class TextCNN(nn.Module):
             nn.Dropout(config.dropout),
         )
         self.dense = nn.Sequential(
-            nn.Dropout(config.dropout),
             nn.Linear(self.channel, config.out_dim)
         )
    
