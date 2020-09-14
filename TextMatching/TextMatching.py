@@ -166,7 +166,7 @@ class ESIM(nn.Module):
         super(ESIM, self).__init__()
         # Input encoding
         self.embedding = nn.Embedding(vocab_size, config.embed_dim)
-        self.enc_lstm = nn.LSTM(config.embed_dim, config.hid_dim, batch_first = config.dropout, bidirectional = True)
+        self.enc_lstm = nn.LSTM(config.embed_dim, config.hid_dim, batch_first = True, dropout = config.dropout, bidirectional = True)
         # Local inference modeling
         # self.attention()
         # Inference composition
@@ -174,11 +174,12 @@ class ESIM(nn.Module):
             nn.Linear(config.hid_dim * 4, config.hid_dim),
             nn.ReLU()
         )
-        self.infer_lstm = nn.LSTM(config.hid_dim, config.hid_dim, batch_first = config.dropout, bidirectional = True)
+        self.infer_lstm = nn.LSTM(config.hid_dim, config.hid_dim, batch_first = True, dropout = config.dropout, bidirectional = True)
         # Prediction
         self.ave_pool = nn.AvgPool2d((3,config.hid_dim*2),(1,0),padding = (1,0))
         self.max_pool = nn.MaxPool2d((3,config.hid_dim*2),(1,0),padding = (1,0))
         self.MLP = nn.Sequential(
+            nn.Dropout(),
             nn.linear(config.hid_dim * 2, config.hid_dim * 4),
             nn.Tanh(),
             nn.Linear(config.hid_dim * 4, config.out_dim),
