@@ -8,16 +8,14 @@ $$P(w_i|w_1,...w_(i-1))$$
 
 ## 机器翻译
 
-### 模型
-
 #### 数据集
 
 英译汉: Chinese(Mandarin) - English (23610)
+
+### 模型
 
 #### Seq2seq with Attention
 
 **Seq2seq** : Encoder(GRU)-Decoder(GRU)
 
 **Attention** : Soft-Attention
-
-
